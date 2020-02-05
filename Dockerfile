@@ -10,6 +10,7 @@ RUN apt update && apt install -y build-essential software-properties-common libc
 
 RUN git clone https://github.com/broadinstitute/ichorCNA.git  
 RUN Rscript -e 'install.packages("plyr")'
+RUN Rscript -e 'install.packages("optparse")'
 RUN Rscript -e 'install.packages("BiocManager")'
 RUN Rscript -e 'BiocManager::install("HMMcopy")'  
 RUN Rscript -e 'BiocManager::install("GenomeInfoDb")'  
