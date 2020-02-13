@@ -16,12 +16,10 @@ RUN Rscript -e 'BiocManager::install("HMMcopy")'
 RUN Rscript -e 'BiocManager::install("GenomeInfoDb")'  
 RUN Rscript -e 'BiocManager::install("GenomicRanges")'
 RUN R CMD INSTALL ichorCNA 
-ENV PATH="./ichorCNA/scripts/:${PATH}"
-ENV PATH="./ichorCNA/inst/extdata/:${PATH}"
 
 RUN git clone https://github.com/shahcompbio/hmmcopy_utils.git
 RUN cd hmmcopy_utils && cmake . && make
 RUN cd ..
-ENV PATH="./hmmcopy_utils/bin/:${PATH}"
+ENV PATH="/hmmcopy_utils/bin/:/ichorCNA/scriipts/:ichorCNA/inst/extdata/:${PATH}"
 
 RUN apt autoclean -y && apt autoremove -y
