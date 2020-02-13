@@ -20,6 +20,8 @@ RUN R CMD INSTALL ichorCNA
 RUN git clone https://github.com/shahcompbio/hmmcopy_utils.git
 RUN cd hmmcopy_utils && cmake . && make
 RUN cd ..
-ENV PATH="/hmmcopy_utils/bin/:/ichorCNA/scriipts/:ichorCNA/inst/extdata/:${PATH}"
+ENV PATH="/hmmcopy_utils/bin/:${PATH}"
 
+RUN ln -s /ichorCNA/scripts/ /usr/local/bin/
+RUN ln -s /ichorCNA/inst/extdata/ /usr/local/bin/
 RUN apt autoclean -y && apt autoremove -y
